@@ -1,2 +1,0 @@
-# wesgabbard.com
-portfolio site

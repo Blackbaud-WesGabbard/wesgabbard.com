@@ -1,0 +1,157 @@
+/*---------------
+TYPOGRAPHY
+----------------*/
+html {font-size: 62.5%;}
+body {font-family: 'Open Sans Condensed', sans-serif;}
+h1 {margin-bottom: 0;font-family: 'Nunito', sans-serif;color: #fff;font-size: 45px;font-size: 4.5rem;
+	font-weight: 300;}
+h2 {font-family: 'Nothing You Could Do', cursive;font-size: 24px;font-size: 2.4rem;} 
+h3 {font-family: 'Open Sans Condensedna', sans-serif;font-size: 20px;font-size: 2rem;}
+p, a {font-family: 'Open Sans Condensed', sans-serif;font-size: 18px;font-size: 1.8rem;}
+.navbar-inverse .navbar-nav > li > a {color: #fff;font-family: 'Open Sans Condensed', sans-serif;font-weight: 500;
+	font-size: 24px;font-size: 2.4rem;padding: 15px 0;}
+/*-----------------
+General
+--------------------*/
+body * {transition: all 0.5s linear 0s;}
+.clear {clear:both;}
+img {max-width: 100%;}
+.desk {display: block;}
+.mobileShow { display: none;}
+img.left {float: left;margin: 0 25px 15px 0;}
+img.right {float: right;margin: 0 0 15px 25px;}
+@media all and (max-width: 768px) {
+	.mobileShow {display: block;}
+  	.desk {display: none !important;}
+}
+/*-----------------------
+NAV
+--------------------------*/
+.wrapper .navbar-inverse {background-color:#f16741;border: none;}
+.navbar-brand {height: auto;}
+.navbar-brand > img {width: 116px;height: 100px;}
+.nav > li {margin: 0;width: 25%;text-align: center;}
+.nav > li.dropdown {margin: 0;}
+.navbar-wrapper {margin: 0 auto;color: #fff;width: 100%;}
+.navbar-collapse {box-shadow:none;}
+.navbar-inverse .navbar-collapse {border: 0 none;}
+.nav {width: 75%;margin: 35px 0 0;float: right;}
+.navbar-nav > li > a {display: inline-block;}
+.navbar-header {float:left;}
+.fa-bars {color: #fff;font-size: 4rem;}
+.menu-link {float: right;margin: 10px 0 0;display: none;}
+@media all and (max-width: 768px) {
+  ul.nav li {margin: 0px;}
+  a.menu-link {display: block; position: absolute; top: 10px; right: 2%;}
+  a.menu-link:hover { text-decoration: none; }
+  a.menu-link .menu { clear: both; min-width: inherit; float: none; }
+  #menu {overflow: hidden; max-height: 0px; background-color: #363431; transition: none 0s ease 0s;display:inherit !important;}
+  .wrapper .navbar-inverse.active {background-color: #363431;}
+  #menu.active{max-height: 100%; transition: none 0s ease 0s;  margin: 0; clear: both; width: 100%;}
+  #menu ul {display: inline; margin: 0; width: 100%;}
+  .splash #menu ul {margin: 75px 0 0;}
+  #menu li, #menu > ul > li { display: block; width: 100%; }
+  #menu li a { color: #ffffff; display: block; padding: 0.8em; border-bottom: 1px solid #808080; position: relative; }
+  #menu li.menu-item:last-child a { border: 0px none; }
+  #menu li.menu-item:last-child ul li a { border-bottom: 1px solid #808080; }
+  #menu ul ul > li a { padding: 0px; }
+  #menu ul ul, #menu ul ul ul { display: inherit; position: relative; left: auto; top: auto; border: medium none; }
+}
+/*-----------------
+Splash
+-------------------*/
+.splash {max-width: 100%;width: 100%;position: relative;background: url('http://www.wesgabbard.com/images/frontPageHero.png') no-repeat center center scroll transparent;-webkit-background-size: cover;	-moz-background-size: cover; 	-o-background-size: cover;	background-size: cover;}
+.logo {max-width: 800px;margin: 0 auto;text-align: center;padding: 20px 0 50px;}
+.logo img {margin: 0 0 30px;max-width: 300px;}
+.splash .navbar-wrapper {max-width: 1000px;}
+.splash .navbar-wrapper .container {padding: 0;max-width: 100%;width: 100%;}
+.splash .navbar-header {display: none;}
+.splash .navbar-collapse {margin: 0 auto;padding: 0;}
+.splash .nav {width: 100%;}
+.splash .navbar-inverse {background-color: transparent;border: 0 none;}
+.cta .col-lg-4 {overflow: hidden;padding: 0 30px;text-align: center;}
+.responsive .col-lg-4 {background-color: #F06641;}
+.responsive .icon {width: 100%;}
+.responsive h2 {margin-bottom: 95px;}
+.fundraising .col-lg-4 {background-color:#3A5D88;}
+.cms .col-lg-4 {background-color: #53BF9C;}
+.cta {display: block;}
+.cta a h2 {color: #fff;font-family: 'Nunito', sans-serif;text-align: center;margin: 25px 0 0;}
+.cta .fa-3x {color: #fff;font-size: 22rem;line-height: 1.81;}
+/*------------------------
+PORTFOLIO
+-------------------------*/
+@media all and (min-width:1200px) {
+.row {margin: 40px 0;}
+.row:first-child {margin-top: 0;}
+figure img {max-height:162px;}
+}
+
+.project {position: relative;overflow: hidden;}
+figure {background: none repeat scroll 0 0 transparent;cursor: pointer;display: inline-block;height: auto;overflow: hidden;position: relative;text-align: center;width: 100%;z-index: 1; padding: 0;}
+figure a {font-size: 0;opacity: 0; text-indent: 200%; white-space: nowrap; z-index: 1000;}
+figure img {display: block;opacity: 0.8;position: relative;transform: scale(1);transition: opacity 0.35s ease 0s, transform 0.35s ease 0s;}
+figure figcaption {backface-visibility: hidden;color: #fff;padding: 1em;text-transform: uppercase;}
+figure figcaption:before, figure figcaption:after {pointer-events: none;}
+figure figcaption, figure a {height: 100%;left: 0;position: absolute;top: 0;width: 100%;}
+.no-touch figure:hover {background: none repeat scroll 0 0 #f16741;}
+.no-touch figure:hover img { opacity: 0.15;transform: scale(1.15);}
+figure.effectHover figcaption:before {border: 1px solid #fff;bottom: 10px;content: "";left: 10px;
+    position: absolute;right: 10px;top: 10px;transform: scale(1.1);}
+figure.effectHover figcaption:before, figure.effectHover p {opacity: 0;transition: opacity 0.35s ease 0s, transform 0.35s ease 0s;}
+figure.effectHover p {margin: 0 auto;transform: scale(1.5);font-weight: bold;}
+.no-touch figure.effectHover:hover figcaption:before, .no-touch figure.effectHover:hover p {opacity: 1;
+    transform: scale(1);}
+
+/*----------------------------
+LIGHTBOX
+-----------------------------*/
+.lightboxData {
+	display:none;
+}
+#cboxOverlay{background: none #000; opacity: .55 !important;}
+#cboxContent {background-color: #f26741;}
+#inline_content{width: 100%; padding: 25px;}
+#colorbox, #cboxWrapper {overflow: inherit !important;}
+#cboxClose {transition: none; top: 0;background: none transparent;text-indent: 0; }
+.fa.fa-times {color: #fff; font-size: 20px;}
+#cboxTopLeft, #cboxTopCenter, #cboxTopRight, #cboxMiddleLeft, #cboxMiddleRight, #cboxBottomLeft, #cboxBottomCenter, #cboxBottomRight {background: none transparent;}
+#cboxLoadedContent{overflow: hidden !important;}
+
+#colorbox .left {width: 30%; float: left; color: #fff;}
+#colorbox .right{width: 65%; float: right;}
+
+#colorbox .row {margin: 10px 0 0;}
+#colorbox .left h2, #colorbox .left span {color: #fff;}
+#colorbox .left h2 {overflow:hidden; margin: 0 0 20px;}
+#colorbox .left h3 {display: block; overflow: hidden; margin: 0 10px 0 0; float: left; line-height: 25px;}
+.whiteMask {background: #f58460; display: block; clear: left; float:left; padding: 0 5px;}
+#inline_content h2 .whiteMask {padding: 5px 10px;font-family: "Nothing You Could Do",cursive; font-size: 24px; font-size: 2.4rem;}
+#inline_content span {font-family: "Open Sans Condensed",sans-serif; font-size: 18px; font-size: 1.8rem; display: block;}
+#inline_content .detail {overflow: hidden; line-height: 25px;}
+#inline_content p {clear:both;} 
+
+@media all and (max-width: 768px) {
+#colorbox .left {width: 100%;}
+#colorbox .right{display:none;}
+}
+
+/*----------------------------------
+Buttons
+------------------------------------*/
+.button {background-color: #53bf9c;line-height: 36px;font-size: 18px;color: #fff;display: block;
+	margin: 10px 0;text-align: center;max-width:175px;}
+.button:hover {background-color: #3a5d88;color: #fff;text-decoration:none;}
+/*------------------
+Form
+--------------------*/
+#form {width: 100%;margin-bottom: 50px;}
+#form input {width: 250px;margin: 0 0 20px 0;border: 1px solid #ccc;border-radius: 5px;text-align: left;background: none;margin: 13px 0 0 8px;font-size: 1.4em;}
+#form .input-bg {height: 45px;margin-bottom: 10px;position: relative;}
+#form .active {background-color: #FCF7D9;}
+#form textarea {width: 298px;height: 209px;display: block;border: 1px solid #ccc;border-radius: 5px;background: none;margin: 0 0 0 20px;padding: 13px 0 13px 0;font-family: Helvetica, sans-serif;
+	font-size: 1.3em;}	
+label {display: block;font-size: 1.3em;text-indent: 10px;font-weight: bold;}
+label.error {position: absolute;top: -16px;right: 49px;padding: 3px;color: #da3939;font-size: 1.0em;
+	text-align: right;font-style: italic;font-weight: normal;}
+#form input.submit-button {float: left;padding-right: 31px;background-color: #ccc;padding: 10px;border-radius: 5px;text-align: center;}

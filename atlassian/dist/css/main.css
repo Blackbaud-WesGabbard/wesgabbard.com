@@ -1,0 +1,133 @@
+.h1 {
+  color: #005183;
+  font-size: 20px; }
+  @media (min-width: 768px) {
+    .h1 {
+      font-size: 36px; } }
+
+.h2 {
+  color: #005183;
+  font-size: 18px; }
+  @media (min-width: 768px) {
+    .h2 {
+      font-size: 24px; } }
+
+.h3 {
+  color: #005183;
+  font-size: 16px; }
+  @media (min-width: 768px) {
+    .h3 {
+      font-size: 24px; } }
+
+.h4 {
+  color: #005183;
+  font-size: 14px; }
+  @media (min-width: 768px) {
+    .h4 {
+      font-size: 16px; } }
+
+.h5 {
+  color: #005183; }
+
+header .h3 {
+  color: #707070;
+  font-weight: normal; }
+
+md-tab-content {
+  padding-top: 15px; }
+  @media (min-width: 768px) {
+    md-tab-content {
+      padding-top: 30px; } }
+
+.tab-box {
+  padding: 0 5px; }
+  @media (min-width: 480px) {
+    .tab-box {
+      padding: 0 15px; } }
+
+.tab-box__menu {
+  padding: 0; }
+
+.tab-box__content {
+  padding: 0 0 0 5px; }
+  @media (min-width: 768px) {
+    .tab-box__content {
+      padding: 0 0 0 15px; } }
+  @media (min-width: 768px) {
+    .tab-box__content {
+      padding: 0 0 0 50px; } }
+  .tab-box__content .tab-box__speaker-list {
+    margin: 15px 0; }
+    @media (min-width: 480px) {
+      .tab-box__content .tab-box__speaker-list {
+        margin: 30px 0; } }
+    .tab-box__content .tab-box__speaker-list .h5 {
+      margin: 0; }
+  .tab-box__content .tab-box__bio {
+    margin: 15px 0 0; }
+    @media (min-width: 480px) {
+      .tab-box__content .tab-box__bio {
+        margin: 30px 0 0; } }
+    .tab-box__content .tab-box__bio h5 {
+      margin: 15px 0; }
+      @media (min-width: 480px) {
+        .tab-box__content .tab-box__bio h5 {
+          margin: 30px 0; } }
+
+header .header__logo {
+  background: #005183;
+  width: 100%;
+  height: 46px; }
+  header .header__logo a {
+    text-indent: -9999px;
+    background: url("https://wac-cdn-a.atlassian.com/assets/img/icons/atlassian-logo-and-text.svg") no-repeat 0 0;
+    background-size: contain;
+    width: 130px;
+    height: 26px;
+    display: inline-block;
+    margin: 8px 0 0; }
+
+header .header__masthead {
+  padding: 20px 0 30px 0; }
+  @media (min-width: 768px) {
+    header .header__masthead {
+      padding: 50px 0 60px 0; } }
+  header .header__masthead img {
+    margin: 0 auto 25px; }
+  header .header__masthead .h3 {
+    margin: 0; }
+
+md-tab-group {
+  height: 100%; }
+
+md-tabs .md-tab {
+  background: #f5f5f5;
+  color: #333333;
+  border-top: 1px solid #cccccc;
+  border-left: 1px solid #cccccc; }
+  md-tabs .md-tab.md-active {
+    background: #fff;
+    color: #707070;
+    border-bottom: 0 none; }
+  md-tabs .md-tab:first-child {
+    border-top-left-radius: 10px; }
+  md-tabs .md-tab:nth-last-child(2) {
+    border-top-right-radius: 10px;
+    border-right: 1px solid #cccccc; }
+
+.tab-box__menu md-list-item.active .md-button, .tab-box__menu md-list-item:active .md-button {
+  background: #f5f5f5; }
+
+.tab-box__menu md-list-item .md-button {
+  padding: 15px; }
+
+.tab-box__menu .h4 {
+  margin: 0; }
+  @media (min-width: 480px) {
+    .tab-box__menu .h4 {
+      margin-bottom: 10px;
+      line-height: 1.35; } }
+
+.tab-box__menu p {
+  margin: 0;
+  line-height: 1.35; }

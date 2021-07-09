@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.9/angular-material.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="dist/css/main.min.css">
+  </head>
+  <body ng-app="atlassianApp" ng-controller="MainCtrl">
+    <header>
+      <section class="header__logo">
+        <div class="container">
+          <a href="https://www.atlassian.com" title="Atlassian">Atlassian</a>
+        </div>
+      </section>
+      <section class="header__masthead text-center">
+        <img class="img-responsive" src="images/atlassian-summit-masthead.png" alt="Atlassian Summit" />
+        <h1 class="h3">
+          Video Archive
+        </h1>
+      </section>
+    </header>
+    <main>      
+      <section class="tab-box container" id="tab-container">
+        <div layout="row" layout-sm="column" layout-align="space-around">
+          <md-progress-circular md-mode="indeterminate" ng-show="loading == true" md-diameter="96"></md-progress-circular>
+        </div>
+        <md-content ng-cloak>
+          <md-tabs md-selected="selectedIndex" md-autoselect md-dynamic-height md-no-ink md-no-ink-bar md-swipe-content>
+            <md-tab ng-repeat="tab in tabs track by $index" label="{{tab.title}}" ng-model="showItem" md-on-select="showContent(tab.id)">
+              <div class="col-xs-4 tab-box__menu">
+                <h2 class="h3">
+                  <strong>{{tab.title}}</strong>
+                </h2>
+                <md-list>
+                  <md-list-item ng-repeat="item in items" data-ng-if="item.Track.Title == tab.title" data-item-id="{{item.Id}}" ng-init="$first ? showContent(item.Id) : null" ng-model="showItem" ng-class="{'active': showItem == item.Id}" ng-click="showContent(item.Id)">
+                    <div class="md-list-item-text">
+                      <h3 class="h4">
+                        <strong>{{item.Title}}</strong>
+                      </h3>
+                      <p class="small hidden-xs" ng-repeat="speaker in item.Speakers">
+                        {{speaker.FirstName}} {{speaker.LastName}}, {{speaker.Company}}
+                      </p>
+                    </div>
+                    <md-divider ng-if="!$last"></md-divider>
+                  </md-list-item>
+                </md-list>
+              </div>
+              <div class="col-xs-8 tab-box__content">
+                <div ng-repeat="item in items" ng-show="showItem == item.Id">
+                  <h3 class="h1">
+                    <strong>{{item.Title}}</strong>
+                  </h3>
+                  <div class="tab-box__speaker-list">
+                    <h4 class="h5" ng-repeat="speaker in item.Speakers">
+                      <strong>{{speaker.FirstName}} {{speaker.LastName}}, {{speaker.Company}}</strong>
+                    </h4>
+                  </div>
+                  <p>
+                    {{item.Description}}
+                  </p>
+                  <div class="tab-box__bio"> 
+                    <h4 class="h2" ng-if="item.Speakers.length > 0">
+                      <strong>About the Speaker<span ng-if="item.Speakers.length > 1">s</span></strong>
+                    </h4>
+                    <div ng-repeat="speaker in item.Speakers" ng-show="speaker.Biography != ''"> 
+                      <h5>
+                        <strong>{{speaker.FirstName}} {{speaker.LastName}}</strong>, {{speaker.Company}}, {{speaker.Title}}
+                      </h5>
+                      <p>
+                        {{speaker.Biography}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </md-tab>
+          </md-tabs>
+        </md-content>
+      </section>  
+    </main>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-sanitize.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-messages.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.9/angular-material.min.js"></script>
+    <script src="dist/js/main.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.9/angular-material.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>Embedded LO Survey built using AJAX</h1>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <div class="survey-form-container">
+          <form method="POST" class="survey-form" action="http://give.childrensmercy.org/site/Survey">
+            <input type="hidden" name="cons_info_component" id="cons_info_component" value="t" />
+            <h3 class="ObjTitle">Send a Message</h3>
+            <span class="Explicit">Please complete the following information:</span>
+            <hr />    
+            <div class="row">
+              <div class="col-sm-6">
+                <label for="cons_first_name">First Name*</label>
+                <input type="text" class="form-control" name="cons_first_name" id="cons_first_name" value="" size="21" maxlength="50" minlength="1" required/>
+              </div>
+              <div class="col-sm-6">
+                <label for="cons_last_name">Last Name*</label>
+                <input type="text" class="form-control" name="cons_last_name" id="cons_last_name" value="" size="22" maxlength="50" minlength="1" required />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <label for="cons_email">Email </label>
+                <input type="text" class="form-control" name="cons_email" id="cons_email" value="" size="45" maxlength="255" required />
+              </div> 
+            </div>
+            <div class="row">
+              <div class="col-sm-12">           
+                <label for="2138_3063_2_3541">
+                  <span class="aural-only" style="position: absolute; left: -9999px;">
+                  Question - Not Required -
+                  </span>
+                  <span class="Explicit">
+                  Send cheer this holiday season: 
+                  </span>
+                </label>
+                <textarea cols="50" rows="5" class="form-control" name="2138_3063_2_3541" id="2138_3063_2_3541" class="text-area"></textarea>
+              </div>
+            </div>
+            <p>Due to volume, please note that we cannot deliver specific cards to specific patients.</p>
+           
+            <div style="display:none">
+              <label for="denySubmit">Spam Control Text:</label>&nbsp;
+              <input type="text" name="denySubmit" id="denySubmit" value="" alt="This field is used to prevent form submission by scripts." />&nbsp;Please leave this field empty
+            </div>  
+            <button type="button" class="survey-submit">Submit</button>
+
+            <input type="submit" name="ACTION_SUBMIT_SURVEY_RESPONSE" id="ACTION_SUBMIT_SURVEY_RESPONSE" value="Submit " class="Button" />
+            <input type="hidden" name="SURVEY_ID" id="SURVEY_ID" value="3063" />
+          </form>
+          <div class="survey-thanks">
+            <h1>Thanks for submitting your message!</h1>
+          </div>
+        </div>
+      </div>      
+    </main>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript">
+      jQuery(document).ready(function(){
+        var getUrlParameter = function getUrlParameter(sParam) {
+          var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+          sURLVariables = sPageURL.split('&'),
+          sParameterName,
+          i;
+          for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] === sParam) {
+              return sParameterName[1] === undefined ? true : sParameterName[1];
+            }
+          }
+        };
+        var surveySubmitted = getUrlParameter('surveySubmitted');
+        if (surveySubmitted === 'true') {
+          $('.survey-thanks').removeClass('hidden');
+          $('.survey-form').addClass('hidden');
+        }
+        
+        $('.survey-submit').click(function(){
+
+        });
+        // callback is optional, since jQuery has promises
+        function getFile(theURL, type, callback) {
+          /*
+          * Original jQuery.ajax mid - CROSS DOMAIN AJAX 
+          * @author James Padolsey (http://james.padolsey.com)
+          * @updated 12-JAN-10
+          * @info http://james.padolsey.com/javascript/cross-domain-requests-with-jquery/
+          * source: https://raw.github.com/padolsey/jquery.fn/master/cross-domain-ajax/jquery.xdomainajax.js
+          *
+          * This version adds a fix for correctly handling format:xml
+          */
+          jQuery.ajax = (function(_ajax)
+          {
+            var protocol = location.protocol,
+              hostname = location.hostname,
+              exRegex = RegExp(protocol + '//' + hostname),
+              YQL = 'http' + (/^https/.test(protocol)?'s':'') + '://query.yahooapis.com/v1/public/yql?callback=?',
+              query = 'select * from html where url="{URL}" and xpath="*"';
+
+            function isExternal(url)
+            {
+              return !exRegex.test(url) && /:\/\//.test(url);
+            }
+
+            return function(o)
+            {
+              var url = o.url;
+              if (o.dataType == 'xml')   // @rickdog - fix for XML
+                query = 'select * from xml where url="{URL}"';  // XML
+              if ( /get/i.test(o.type) && !/json/i.test(o.dataType) && isExternal(url) )
+              {
+                // Manipulate options so that JSONP-x request is made to YQL
+                o.url = YQL;
+                o.dataType = 'json';
+                o.data = {
+                  q: query.replace('{URL}', url + (o.data ? (/\?/.test(url) ? '&' : '?') + jQuery.param(o.data) : '')),
+                  format: 'xml'
+                };
+
+                // Since it's a JSONP request
+                // complete === success
+                if (!o.success && o.complete) {
+                  o.success = o.complete;
+                  delete o.complete;
+                }
+
+                o.success = (function(_success)
+                {
+                  return function(data)
+                  {
+                    if (_success) {
+                      // Fake XHR callback.
+                      _success.call(this, {
+                        // YQL screws with <script>s, Get rid of them
+                        responseText: (data.results[0] || '').replace(/<script[^>]+?\/>|<script(.|\s)*?\/script>/gi, '')
+                      }, 'success');
+                    }
+                  };
+                })(o.success);
+              }
+              return _ajax.apply(this, arguments); // not special, use base Jquery ajax
+            };
+          })(jQuery.ajax);
+
+
+          return jQuery.ajax({
+            url: theURL,
+            type: 'GET',
+            dataType: type,
+            success: function(res) {
+              // var text = res.responseText;
+              // .. then you can manipulate your text as you wish
+              callback ? callback(res) : undefined;
+            }
+          })
+        };
+
+        //var url = "http://give.childrensmercy.org/site/Survey?ACTION_REQUIRED=URI_ACTION_USER_REQUESTS&SURVEY_ID=3063&pgwrap=n";
+        var url = 'http://lea.verou.me/2016/09/autoprefixing-with-css-variables/';
+        getFile(url, "html",
+          function(response){
+            console.log('get html');
+            console.log(response);
+          }
+        );
+
+        
+        /*
+        var href = 'http://give.childrensmercy.org/site/Survey?ACTION_REQUIRED=URI_ACTION_USER_REQUESTS&SURVEY_ID=3063&pgwrap=n&callback=?'
+        $.ajax({
+          type: 'GET',
+          url: href,
+          dataType: 'jsonp',
+          jsonpCallback: 'jsonpCallback',
+          success: function(data){
+
+            console.log('success');
+          },
+          error: function(data){
+            console.log('fail');
+          }
+
+        });*/
+      });
+      
+    </script>
+  
+    
+  </body>
+</html>

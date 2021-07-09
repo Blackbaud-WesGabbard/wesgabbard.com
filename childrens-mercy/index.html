@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>Embedded LO Survey</h1>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <div class="survey-form-container">
+          <form method="POST" id="survey-form" action="http://give.childrensmercy.org/site/Survey">
+            <input type="hidden" name="cons_info_component" id="cons_info_component" value="t" />
+            <h3 class="ObjTitle">Send a Message</h3>
+            <span class="Explicit">Please complete the following information:</span>
+            <hr />    
+            <div class="row">
+              <div class="col-sm-6">
+                <label for="cons_first_name">First Name*</label>
+                <input type="text" class="form-control" name="cons_first_name" id="cons_first_name" value="" required="required" />
+              </div>
+              <div class="col-sm-6">
+                <label for="cons_last_name">Last Name*</label>
+                <input type="text" class="form-control" name="cons_last_name" id="cons_last_name" value="" required="required" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <label for="cons_email">Email*</label>
+                <input type="email" class="form-control" name="cons_email" id="cons_email" value="" maxlength="255" required="required" />
+                <div class="alert alert-danger alert-danger--email hidden">
+                  Please add a valid email address
+                </div>
+              </div> 
+            </div>
+            <div class="row">
+              <div class="col-sm-12">           
+                <label for="2138_3063_2_3541">
+                  <span class="aural-only" style="position: absolute; left: -9999px;">
+                  Question - Not Required -
+                  </span>
+                  <span class="Explicit">
+                    Send cheer this holiday season:<br />
+                    <small><em>(There is a 255 character limit)</em></small>
+                  </span>
+                </label>
+                <textarea cols="50" rows="5" maxlength="255" class="form-control" name="2138_3063_2_3541" id="2138_3063_2_3541" class="text-area"></textarea>
+              </div>
+            </div>
+            <p>Due to volume, please note that we cannot deliver specific cards to specific patients.</p>           
+            <div style="display:none">
+              <label for="denySubmit">Spam Control Text:</label>&nbsp;
+              <input type="text" name="denySubmit" id="denySubmit" value="" alt="This field is used to prevent form submission by scripts." />&nbsp;Please leave this field empty
+            </div>  
+            <input type="submit" name="ACTION_SUBMIT_SURVEY_RESPONSE" id="ACTION_SUBMIT_SURVEY_RESPONSE" value="Submit" />
+            <input type="hidden" name="SURVEY_ID" id="SURVEY_ID" value="3063" />
+          </form>
+          <div id="survey-thanks" class="hidden">
+            <h1>Thanks for submitting your message!</h1>
+          </div>
+        </div>
+      </div>      
+    </main>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript">
+      var readCookie = function(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+          var c = ca[i];
+          while (c.charAt(0)==' ') c = c.substring(1,c.length);
+          if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+      };
+
+      var getUrlParam = function (param) {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        paramVal,
+        i;
+        for (i = 0; i < sURLVariables.length; i++) {
+          paramVal = sURLVariables[i].split('=');
+          if (paramVal[0] === param) {
+            return paramVal[1] === undefined ? true : paramVal[1];
+          }
+        }
+      }; 
+
+      var validateEmail = function(email) {
+        var validate = /\S+@\S+\.\S+/;
+        return validate.test(email);
+      };
+
+      if (getUrlParam('surveySubmitted') === 'true' || readCookie('surveySubmitted') === 'true') {
+        document.cookie='surveySubmitted=true';
+        $('#survey-form').addClass('hidden');
+        $('#survey-thanks').removeClass('hidden');
+      }
+
+      $('#survey-form').submit(function(e){
+        var emailVal = $('#cons_email').val();
+
+        if(validateEmail(emailVal) === false) {
+          e.preventDefault();
+          $('.alert-danger--email').removeClass('hidden');
+          return false;
+        } else {
+          return true;
+        }
+      });
+    </script>
+  </body>
+</html>

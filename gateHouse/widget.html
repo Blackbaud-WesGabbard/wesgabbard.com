@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+<link href="stylesheets/styles.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+	<section class="widget">
+		<h1 class="title"></h1>
+		<h2 class="subtitle"></h2>
+		<div class="imgWrap"></div>
+		<div class="description"></div>
+		<form id="businessSearch">
+			<input type="text" placeholder="Search business keyword here">
+			<button>Search</button>
+		</form>
+	</section>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){ 
+	$.ajax({
+        type: 'GET',
+        url: 'http://widget.local.sj-r.com/widget/json/featured_business_list', 
+        data: {
+        include_ads: '1',
+        limit: '1',
+        level: '1'
+        },
+        dataType: 'jsonp'
+    }).done(function(data){
+        console.log(data);
+        var business = data[0];
+        var compName = business.name;
+        var cat = business.category;
+        var img = business.image;
+        var imgSplit = img.split('>');
+        var imgUrl = imgSplit[0];
+        var desc = business.description;
+        console.log(desc);
+
+        $('.title').text(compName);
+        $('.subtitle').text(cat);
+        $('.imgWrap').html('<img src='+imgUrl+'%3E.jpg />');
+        $('.description').html(desc);
+
+    });
+});
+</script>
+</body>
+</html>
